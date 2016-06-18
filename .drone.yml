@@ -1,0 +1,28 @@
+build:
+    image: golang
+    commands:
+        - go get -u github.com/kardianos/govendor
+        - govendor sync
+        - go test ./...
+publish:
+    docker:
+        username: $$DOCKER_USERNAME
+        password: $$DOCKER_PASSWORD
+        email: $$DOCKER_EMAIL
+        repo: dennyloko/test-drone
+        tag:
+            - latest
+            - "$$DRONE_TAG"
+        file: Dockerfile
+        insecure: false
+        when:
+            branch: master
+notify:
+    email:
+        from: $$FROM
+        host: email-smtp.us-east-1.amazonaws.com
+        username: $$SES_USERNAME
+        password: $$SES_PASSWORD
+        recipients:
+            - $$RECIPIENT_1
+            - $$RECIPIENT_2
