@@ -26,3 +26,5 @@ notify:
         recipients:
             - $$RECIPIENT_1
             - $$RECIPIENT_2
+        when:
+            branch: master
