@@ -12,11 +12,11 @@ publish:
         repo: dennyloko/test-drone
         tag:
             - latest
-            - "$$DRONE_TAG"
+            - "$$TAG"
         file: Dockerfile
         insecure: false
         when:
-            branch: master
+            event: tag
 notify:
     email:
         from: $$FROM
